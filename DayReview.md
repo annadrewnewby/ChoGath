@@ -10,4 +10,8 @@ This file  contains links and text after every class that you can look back to a
 
 # Day 2 - 2021-01-13
 - Students will understand the syllabus and course requirements
-- Students will be able to recognize common layers across different games.
+- Students will know what a sprint is
+- Students will understand how grading is done
+- Students will be able to look at the frame of a game and assess what is drawn in each layer
+- Students can describe an effectl/glow buffer
+- Students can discuss how a point (e.g. the mouse) lives in both world space and in screen space.

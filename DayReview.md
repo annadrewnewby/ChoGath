@@ -15,3 +15,4 @@ This file  contains links and text after every class that you can look back to a
 - Students will be able to look at the frame of a game and assess what is drawn in each layer
 - Students can describe an effectl/glow buffer
 - Students can discuss how a point (e.g. the mouse) lives in both world space and in screen space.
+- Activity: Identify the layers in a game using [Layers Activity](LayersActivity.pptx)

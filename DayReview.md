@@ -16,3 +16,16 @@ This file  contains links and text after every class that you can look back to a
 - Students can describe an effectl/glow buffer
 - Students can discuss how a point (e.g. the mouse) lives in both world space and in screen space.
 - Activity: Identify the layers in a game using [Layers Activity](LayersActivity.pptx)
+
+# Day 3 - 2021-01-20
+- Students will be able to describe a state machine.
+- Students will be able to explain the role state machines play in a game
+- Students will be able to determine if a state machine transitions between scenes or is an in-game state machine.
+- Students will be able to explain what a scene in a game is.
+- Students will be able to explain a game representation in the "Forrest of scene trees" paradigm
+- Students will be able to explain how to logical order nodes/game objects in a scene tree
+- Students will be able to explain parent/child relationships in a scene tree
+- Students will understand the traditional separation of screens space nodes and world nodes
+- Students will be able to critical examine a game and sketch a possible scene tree for the game
+- Students will understand that nodes/game objects have components
+- Students will understand that components respond to draw calls, respond to update calls, and/or carry data.

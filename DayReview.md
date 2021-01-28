@@ -29,3 +29,18 @@ This file  contains links and text after every class that you can look back to a
 - Students will be able to critical examine a game and sketch a possible scene tree for the game
 - Students will understand that nodes/game objects have components
 - Students will understand that components respond to draw calls, respond to update calls, and/or carry data.
+
+## Day 4 - Snow Day
+
+## Day 5 - 2021-01-27
+- Students will be familiar with the Stack Overflow survey.
+- Students will have a basic understanding of the history of HTML and browsers
+- Students will have a basic understanding on HTML
+- Students will have a basic inderstanding of CSS
+- Students will have a basic understanding of JavaScript
+- Students can explain the difference between and statically types and dynamically typed language.
+- Students can differentiate between stroke and fill commands
+- Students understand how to draw a rectangle on a canvas
+- Students know to refresh their canvas between renders
+- Students will have a basic understanding of JavaScript class syntax
+- Student will be able to implement a basic GameObject instance

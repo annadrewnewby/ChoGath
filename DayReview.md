@@ -44,3 +44,14 @@ This file  contains links and text after every class that you can look back to a
 - Students know to refresh their canvas between renders
 - Students will have a basic understanding of JavaScript class syntax
 - Student will be able to implement a basic GameObject instance
+
+## Day 6 - 2021-02-01
+- Students will have a basic understanding of the difference between game engine code and game code
+- Students will be able to create a GameObject class
+- Students will be able to create a Scene class
+- Students will be able to explain the basic methods in a GameObject class
+- Students will be able to explain the basic methods in a Scene class
+- Students will be able to explain the basic methods in a subclass of GameObject
+- Students will be able to explain teh basic methods in a subclass of Scene
+- Students will have a basic understanding of the difference between an infinite loop and calling a timer on a thread
+- Students will be able to create a one scene "game" with multiple game objects.

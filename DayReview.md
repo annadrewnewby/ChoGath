@@ -55,3 +55,12 @@ This file  contains links and text after every class that you can look back to a
 - Students will be able to explain teh basic methods in a subclass of Scene
 - Students will have a basic understanding of the difference between an infinite loop and calling a timer on a thread
 - Students will be able to create a one scene "game" with multiple game objects.
+
+## Day 7 - 2021-02-03
+- Students will understand the difference between single inheritance and multiple inheritance
+- Students will understand the composition model of multiple inheritance
+- Students can give an example of the problem with single inheritance in a game setting
+- Students will be able to write basic components
+- Students will be be able to identify components in an existing game
+- Students have a basic understanding of reflection
+- Students will be able to use reflection to call the correct components on a game object

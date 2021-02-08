@@ -64,3 +64,6 @@ This file  contains links and text after every class that you can look back to a
 - Students will be be able to identify components in an existing game
 - Students have a basic understanding of reflection
 - Students will be able to use reflection to call the correct components on a game object
+
+## Day 8 - 2021-02-08
+- 

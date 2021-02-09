@@ -66,4 +66,11 @@ This file  contains links and text after every class that you can look back to a
 - Students will be able to use reflection to call the correct components on a game object
 
 ## Day 8 - 2021-02-08
-- 
+- Students will understand the differences between the C, C++, and C# languages.
+- Students will understand the historical relationship between C++, Java, and C#.
+- Students will be familiar with the major commerical game engines.
+- Students will be able to discuss at a high level whether a game engine is PC/Console first, mobile first, or WebGL first.
+- Students will have a basic understanding of the different licensing options for game engines
+- Students can describe what a "blueprint" is in Unreal Engine
+- Students will be able to explain the pros and cons of using a node-based programming system.
+- Students will understand that there are many game engines that are not available commerically.

@@ -74,3 +74,12 @@ This file  contains links and text after every class that you can look back to a
 - Students can describe what a "blueprint" is in Unreal Engine
 - Students will be able to explain the pros and cons of using a node-based programming system.
 - Students will understand that there are many game engines that are not available commerically.
+
+## Day 9 - 2021-02-10
+- Students can describe the role of the heap in RAM
+- Students can describe serialization
+- Students can describe deserialization
+- Students can explain the pitfalls of "by value" serialization (multiple copies of the same object).
+- Students can explain the pitfalls of circular references in serialization (infinite loop).
+- Students can explain the role of a prefab in a game description
+- Students can destinguish the difference between a game engine component and a custom game component.

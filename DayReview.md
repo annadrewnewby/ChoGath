@@ -83,3 +83,10 @@ This file  contains links and text after every class that you can look back to a
 - Students can explain the pitfalls of circular references in serialization (infinite loop).
 - Students can explain the role of a prefab in a game description
 - Students can destinguish the difference between a game engine component and a custom game component.
+
+## Day 10 - 2021-02-15
+- Students can explain the advantage of a text-based game description
+- Students can create a text-base definition of a prefab
+- Students can create a text-based defintion of a scene
+- Students can create a scene definition that allows for both prefabs an one-off game objects
+

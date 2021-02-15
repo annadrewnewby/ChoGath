@@ -2,16 +2,18 @@
  * @class GameObject representing a game object in the scene
  */
 class GameObject {
-    static deserialize(gameObjectDefinition, allComponents){
-        let toReturn = new GameObject();
-        toReturn.name = gameObjectDefinition.name;
-        for(let componentDefinition of gameObjectDefinition.components){
-            let componentClass = allComponents.find(i=>i.name == componentDefinition.name);
-            let component = new componentClass(toReturn, ...componentDefinition.args || []);
+
+    static deserialize(gameObjectDefinition, allComponents){ //Deserialize a game object definition
+        let toReturn = new GameObject(); //Create a new Game Object
+        toReturn.name = gameObjectDefinition.name; //Set the name (for later reference in the game)
+        for(let componentDefinition of gameObjectDefinition.components){ //Loop over all the defined components
+            let componentClass = allComponents.find(i=>i.name == componentDefinition.name); //Find a component definition with the appropriate name
+            let component = new componentClass(toReturn, ...componentDefinition.args || []); //Create a new component, speading the arguments and defaulting to nothing.
             toReturn.components.push(component);
         }
         return toReturn;
     }
+
     /**
      * Set the default values of x and y
      */
@@ -21,12 +23,12 @@ class GameObject {
         this.components = [];
         
     }
+    /**
+     * Update the game by iterating over every game object and calling update if available.
+     */
     update(){
         for(let component of this.components){
-            //Falsey
-            if(component.update){
-                component.update();
-            }
+            if(component.update) component.update();
         }
     }
     
@@ -36,10 +38,7 @@ class GameObject {
      */
     draw(ctx) {//How does the game object draw itself?
         for(let component of this.components){
-            //Falsey
-            if(component.draw){
-                component.draw(ctx);
-            }
+            if(component.draw) component.draw(ctx);
         }
     }
 }

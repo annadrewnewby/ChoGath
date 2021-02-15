@@ -1,36 +1,33 @@
 import GameObject from "./game-object.js"
 
-
-/**
- * @class Scene representing a scene in the game.
- * This class should be extended in your game.
- */
 class Scene {
 
-    /**
-     * Default constructor that creates a array of children.
-     * These should be populated with GameObjects
-     */
+
     constructor() {
         this.children = [];
     }
+
     static deserialize(sceneDefinition, allComponents, allPrefabs) {
-        let toReturn = new Scene();
-        toReturn.name = sceneDefinition.name;
-        for (let objectDefinition of sceneDefinition.children) {
+        let toReturn = new Scene(); //Create a new Scene
+        toReturn.name = sceneDefinition.name; //Set the scene's name (for reference later when we are changing scenes)
+        for (let objectDefinition of sceneDefinition.children) { //Loop over all the children.
             let gameObject;
             let gameObjectDefinition;
-            if (objectDefinition.prefabName) gameObjectDefinition = allPrefabs.find(i => i.name == objectDefinition.prefabName);
-            else/*It's a one-off game object */ gameObjectDefinition = objectDefinition.gameObject;
+            if (objectDefinition.prefabName) //It's a prefab
+                gameObjectDefinition = allPrefabs.find(i => i.name == objectDefinition.prefabName);
+            else //It's a one-off game object 
+                gameObjectDefinition = objectDefinition.gameObject;
 
-            gameObject = GameObject.deserialize(gameObjectDefinition, allComponents);
-            gameObject.x = objectDefinition.x || 0;
-            gameObject.y = objectDefinition.y || 0;
+            
+            gameObject = GameObject.deserialize(gameObjectDefinition, allComponents); //Deserialize the object
+            gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
+            gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
             toReturn.children.push(gameObject);
         }
         return toReturn;
 
     }
+
     /**
      * Return a reference to the children in this scene
      * @return {Array} the array of child GameObjects
@@ -38,6 +35,7 @@ class Scene {
     getChildren() {
         return this.children;
     }
+
     /**
      * 
      * @param {GameObject} child the GameObject child to add to the scene
@@ -45,6 +43,7 @@ class Scene {
     addChild(child) {
         this.children.push(child)
     }
+
     /**
      * 
      * @param {2D Rendering Context from a Canvas} ctx the 2D context to which we draw
@@ -56,6 +55,7 @@ class Scene {
             child.draw(ctx);
         }
     }
+
     /**
      * Update all the Gamebjects
      */

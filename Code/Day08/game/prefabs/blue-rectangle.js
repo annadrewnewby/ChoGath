@@ -1,9 +1,9 @@
 export default {
-  name:"BlueRectangle",
-  components:[
+  name:"BlueRectangle", //Prefab Name
+  components:[ //List of Components
     {
-      name:"DrawComponent",
-      args:["blue"]
+      name:"DrawComponent", //Name of the component
+      args:["blue"] //Optional: arguments to be passed to the component constructor
     },
     {
       name:"MoveComponent",

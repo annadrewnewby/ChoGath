@@ -1,0 +1,31 @@
+export default {
+  name:"FirstScene",
+  gameObjects:[
+    {
+      prefabName:"BlueRectangle",
+      x:400,
+      y:100,
+    },
+    {
+      prefabName:"RedRectangle",
+      x:0,
+      y:0,
+    },
+    {
+      gameObject:{
+        name:"GreenRectangle",
+        components:[
+          {
+            name:"MoveComponent"
+          },
+          {
+            name:"DrawComponent",
+            args:['green']
+          }
+        ]
+      },
+      x:150,
+      y:150
+    }
+  ]
+}

@@ -90,3 +90,9 @@ This file  contains links and text after every class that you can look back to a
 - Students can create a text-based defintion of a scene
 - Students can create a scene definition that allows for both prefabs an one-off game objects
 
+## Day 11 - 2021-02-17
+- Students can explain how to manage multiple scenes in a game
+- Students can explain the hazards of switching between scenes that have been instantiated
+- Students can recursively instantiate game objects with children
+- Students can correctly modify prefab game objects to maintain their children
+

@@ -96,3 +96,13 @@ This file  contains links and text after every class that you can look back to a
 - Students can recursively instantiate game objects with children
 - Students can correctly modify prefab game objects to maintain their children
 
+## Day 12 - 2021-02-22
+- Students understand the difference between digital and analog input
+- Students can identify analogy and digital input on a gamepad
+- Students understand the mechanics of a keyboard as input
+- Students can explain the difference between keys and key codes in keyboard apis
+- Students understand the problem with keyboard ghosting
+- Students can explain the problem with repeated keys
+- Students understand the role of modified keys
+- Students understand the inputs available from a mouse
+- Students understand the ordering of mouse buttons in modern mouse apis

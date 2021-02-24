@@ -106,3 +106,12 @@ This file  contains links and text after every class that you can look back to a
 - Students understand the role of modified keys
 - Students understand the inputs available from a mouse
 - Students understand the ordering of mouse buttons in modern mouse apis
+
+# Day 13 - 2021-02-24
+- Students understand how to "build" a game
+- Students can explain how to destroy objects (using a marker and separate update function)
+- Students understand how to instantiate a game object from code
+- Students can use keyboard and mouse update events
+- Students can use keyboard and mouse polling
+- Students can explain why keyboard input is stored in a separate variable
+- Students can explain when to use events and when to use polling

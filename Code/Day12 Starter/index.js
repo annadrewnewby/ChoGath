@@ -2,17 +2,14 @@
 import SceneManager from "./engine/scene-manager.js"
 
 /* Get references to all the custom scenes from the game */
-import FirstScene from "./game/scenes/first-scene.js"
-import SecondScene from "./game/scenes/second-scene.js"
+import * as GameScenes from "./game/scenes/game-scenes.js"
 
 /* Get references to all custom prefabs from the game */
-import BlueRectangle from "./game/prefabs/blue-rectangle.js"
-import RedRectangle from "./game/prefabs/red-rectangle.js"
+import * as GamePrefabs from "./game/prefabs/game-prefabs.js"
 
 /* Get references to all the components. Eventually this will include engine and game-based components */
-import DrawComponent from "./game/components/draw-component.js"
-import MoveComponent from "./game/components/move-component.js"
-import ChangeSceneComponent from "./game/components/change-scene-component.js"
+import * as EngineComponents from "./engine/components/engine-components.js"
+import * as GameComponents from "./game/components/game-components.js"
 
 /* Import the scene object so we can call deserialize */
 import Scene from "./engine/scene.js"
@@ -93,19 +90,11 @@ function boot() {
     return false;
   }
 
-  let allComponents = [MoveComponent, DrawComponent, ChangeSceneComponent]  //Get all possible components in a list
-  let allPrefabs = [BlueRectangle, RedRectangle]      //Get all possible prefabs in a list
-  //let firstScene = Scene.deserialize(FirstScene, allComponents, allPrefabs);  //Deserialize the scene definition
-  //let secondScene = Scene.deserialize(SecondScene, allComponents, allPrefabs);
-
-  SceneManager.allComponents = allComponents;
-  SceneManager.allPrefabs = allPrefabs;
-
-  SceneManager.allScenes.push(FirstScene);
-  SceneManager.allScenes.push(SecondScene);
+  SceneManager.allComponents = [...Object.keys(EngineComponents).map(i => EngineComponents[i]), ...Object.keys(GameComponents).map(i => GameComponents[i])];
+  SceneManager.allPrefabs = Object.keys(GamePrefabs).map(i => GamePrefabs[i]);
+  SceneManager.allScenes = Object.keys(GameScenes).map(i=>GameScenes[i]);
 
   SceneManager.changeScene("FirstScene");
-
 
   /* Update and draw our game */
   function gameLoop() {

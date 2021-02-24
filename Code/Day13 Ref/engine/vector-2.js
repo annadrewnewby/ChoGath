@@ -19,7 +19,7 @@ class Vector2{
         return;
       }
       else{
-        if(!one.x || !one.y){
+        if((!one.x && one.x != 0) || (!one.y && one.y != 0)){
           console.error("If you pass a non-array as a single arguments to the Vector2 constructor, it must have 'x' and 'y' keys")
           return;
         }
@@ -74,6 +74,14 @@ class Vector2{
     let length = this.getLength;
     this.x /= length;
     this.y /= length;
+  }
+
+  static equals(one, two){
+    return one.x == two.x && one.y == two.y;
+  }
+
+  equals(other){
+    return Vector2.equals(this, other);
   }
 
 }

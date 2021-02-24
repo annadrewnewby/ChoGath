@@ -1,43 +1,39 @@
 import GameObject from "./game-object.js"
+import SceneManager from "./scene-manager.js"
 
 class Scene {
 
+    children = [];
 
-    constructor() {
-        this.children = [];
-    }
-
-    static deserializeObject(objectDefinition, allComponents, allPrefabs){
+    static deserializeObject(objectDefinition) {
         let gameObject;
         let gameObjectDefinition;
         if (objectDefinition.prefabName) //It's a prefab
-            gameObjectDefinition = allPrefabs.find(i => i.name == objectDefinition.prefabName);
+            gameObjectDefinition = SceneManager.allPrefabs.find(i => i.name == objectDefinition.prefabName);
         else //It's a one-off game object 
             gameObjectDefinition = objectDefinition.gameObject;
 
-        
-        gameObject = GameObject.deserialize(gameObjectDefinition, allComponents, allPrefabs); //Deserialize the object
+        gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
         gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
         gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
         return gameObject
     }
 
-    static deserialize(sceneDefinition, allComponents, allPrefabs) {
+    static deserialize(sceneDefinition) {
         let toReturn = new Scene(); //Create a new Scene
         toReturn.name = sceneDefinition.name; //Set the scene's name (for reference later when we are changing scenes)
         for (let objectDefinition of sceneDefinition.children) { //Loop over all the children.
             let gameObject;
             let gameObjectDefinition;
             if (objectDefinition.prefabName) //It's a prefab
-                gameObjectDefinition = allPrefabs.find(i => i.name == objectDefinition.prefabName);
+                gameObjectDefinition = SceneManager.allPrefabs.find(i => i.name == objectDefinition.prefabName);
             else //It's a one-off game object 
                 gameObjectDefinition = objectDefinition.gameObject;
 
-            
-            gameObject = GameObject.deserialize(gameObjectDefinition, allComponents, allPrefabs); //Deserialize the object
+            gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
             gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
             gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
-            toReturn.children.push(gameObject);
+            toReturn.addChild(gameObject);
         }
         return toReturn;
 
@@ -57,6 +53,7 @@ class Scene {
      */
     addChild(child) {
         this.children.push(child)
+        child.callMethod("start", []);
     }
 
     /**
@@ -78,6 +75,48 @@ class Scene {
         //Use an extended for loop to call update on all gameObjects
         for (let child of this.children) {
             child.update();
+        }
+    }
+
+    /**
+     * Remove any game objects marked to be destroyed
+     */
+    cullDestroyed() {
+        let newChildren = [];
+        for (let child of this.children) {
+            if (!child.markedDestroy)
+                newChildren.push(child);
+        }
+        this.children = newChildren;
+    }
+
+    /**
+     * Get a game object by name
+     */
+    getGameObject(name){
+        for(let child of this.children){
+            if(child.name == name) return child;
+            let foundChild = child.getGameObject(name);
+            if(foundChild) return foundChild;
+        }
+        //console.error("Couldn't find game component " + name)
+    }
+
+    /**
+     * Create a new game object based on the prefab name
+     */
+    instantiate(objectDescription){
+        let newObject = Scene.deserializeObject(objectDescription);
+        this.addChild(newObject)
+        
+    }
+
+    /**
+    * Call method on all children and their children
+     */
+    callMethod(name, args){
+        for(let child of this.children){
+            child.callMethod(name, args);
         }
     }
 }

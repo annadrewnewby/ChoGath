@@ -1,8 +1,6 @@
-import Component from "../../engine/component.js"
-import Input from "../../engine/input.js"
-import SceneManager from "../../engine/scene-manager.js";
+import * as Engine from "/engine/engine.js"
 
-class MoleMakerComponent extends Component {
+class MoleMakerComponent extends Engine.Component {
   static name = "MoleMakerComponent";
   constructor(gameObject) {
     super(gameObject);
@@ -14,13 +12,13 @@ class MoleMakerComponent extends Component {
     screenTextComponent.string = score;
 
     //Check to see if need to add another mole
-    if (!SceneManager.currentScene.getGameObject("ClickToDestroy")) {
+    if (!Engine.SceneManager.currentScene.getGameObject("ClickToDestroy")) {
       this.tick++;
     }
     if (this.tick > 100) {
       console.log("Add another")
       this.tick = 0;
-      SceneManager.currentScene.instantiate({
+      Engine.SceneManager.currentScene.instantiate({
         prefabName: "ClickToDestroy",
         x: 0, 
         y: 0

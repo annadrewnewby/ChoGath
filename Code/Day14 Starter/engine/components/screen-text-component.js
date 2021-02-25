@@ -1,5 +1,5 @@
-import Component from "../component.js"
-class ScreenTextComponent extends Component{
+import * as Engine from "/engine/engine.js"
+class ScreenTextComponent extends Engine.Component{
     static name = "ScreenTextComponent"
     constructor(gameObject, string, options){
         super(gameObject);

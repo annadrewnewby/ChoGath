@@ -1,6 +1,6 @@
-import Component from "../../engine/component.js"
+import * as Engine from "/engine/engine.js"
 
-class MoveComponent extends Component{
+class MoveComponent extends Engine.Component{
     static name = "MoveComponent"
     constructor(gameObject){
         super(gameObject);

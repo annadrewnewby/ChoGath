@@ -1,7 +1,6 @@
-import Component from "../../engine/component.js"
-import SceneManager from "../../engine/scene-manager.js"
+import * as Engine from "/engine/engine.js"
 
-class ChangeSceneComponent extends Component {
+class ChangeSceneComponent extends Engine.Component {
   static name = "ChangeSceneComponent";
   constructor(gameObject) {
     super(gameObject);
@@ -10,9 +9,9 @@ class ChangeSceneComponent extends Component {
   update() {
     this.ticks++;
     if (this.ticks > 100) {
-      if (SceneManager.currentScene.name == "FirstScene")
-        SceneManager.changeScene("SecondScene");
-      else SceneManager.changeScene("FirstScene")
+      if (Engine.SceneManager.currentScene.name == "FirstScene")
+        Engine.SceneManager.changeScene("SecondScene");
+      else Engine.SceneManager.changeScene("FirstScene")
     }
   }
 

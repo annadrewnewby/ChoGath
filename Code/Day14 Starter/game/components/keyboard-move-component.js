@@ -1,7 +1,6 @@
-import Component from "../../engine/component.js"
-import Input from "../../engine/input.js"
+import * as Engine from "/engine/engine.js"
 
-class KeyboardMoveComponent extends Component {
+class KeyboardMoveComponent extends Engine.Component {
   static name = "KeyboardMoveComponent";
   constructor(gameObject, speed = 1) {
     super(gameObject);
@@ -9,10 +8,10 @@ class KeyboardMoveComponent extends Component {
 
   }
   update() {
-    if (Input.getKey("ArrowLeft") || Input.getKey('a')) this.gameObject.x -= 1 * this.speed;
-    if (Input.getKey("ArrowRight") || Input.getKey('d')) this.gameObject.x += 1 * this.speed;
-    if (Input.getKey("ArrowUp") || Input.getKey('w')) this.gameObject.y -= 1 * this.speed;
-    if (Input.getKey("ArrowDown") || Input.getKey('s')) this.gameObject.y += 1 * this.speed;
+    if (Engine.Input.getKey("ArrowLeft") || Engine.Input.getKey('a')) this.gameObject.x -= 1 * this.speed;
+    if (Engine.Input.getKey("ArrowRight") || Engine.Input.getKey('d')) this.gameObject.x += 1 * this.speed;
+    if (Engine.Input.getKey("ArrowUp") || Engine.Input.getKey('w')) this.gameObject.y -= 1 * this.speed;
+    if (Engine.Input.getKey("ArrowDown") || Engine.Input.getKey('s')) this.gameObject.y += 1 * this.speed;
   }
 
 }

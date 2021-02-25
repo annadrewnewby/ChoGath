@@ -1,7 +1,7 @@
 import GameObject from "./game-object.js"
 import SceneManager from "./scene-manager.js"
 
-export default  class Scene {
+export default class Scene {
 
     children = [];
 
@@ -13,12 +13,13 @@ export default  class Scene {
         else //It's a one-off game object 
             gameObjectDefinition = objectDefinition.gameObject;
 
+        if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
         gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
         gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
         gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
         return gameObject
     }
-
+    
     static deserialize(sceneDefinition) {
         let toReturn = new Scene(); //Create a new Scene
         toReturn.name = sceneDefinition.name; //Set the scene's name (for reference later when we are changing scenes)
@@ -26,10 +27,11 @@ export default  class Scene {
             let gameObject;
             let gameObjectDefinition;
             if (objectDefinition.prefabName) //It's a prefab
-                gameObjectDefinition = SceneManager.allPrefabs.find(i => i.name == objectDefinition.prefabName);
+            gameObjectDefinition = SceneManager.allPrefabs.find(i => i.name == objectDefinition.prefabName);
             else //It's a one-off game object 
-                gameObjectDefinition = objectDefinition.gameObject;
-
+            gameObjectDefinition = objectDefinition.gameObject;
+            
+            if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
             gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
             gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
             gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
@@ -93,11 +95,11 @@ export default  class Scene {
     /**
      * Get a game object by name
      */
-    getGameObject(name){
-        for(let child of this.children){
-            if(child.name == name) return child;
+    getGameObject(name) {
+        for (let child of this.children) {
+            if (child.name == name) return child;
             let foundChild = child.getGameObject(name);
-            if(foundChild) return foundChild;
+            if (foundChild) return foundChild;
         }
         //console.error("Couldn't find game component " + name)
     }
@@ -105,17 +107,17 @@ export default  class Scene {
     /**
      * Create a new game object based on the prefab name
      */
-    instantiate(objectDescription){
+    instantiate(objectDescription) {
         let newObject = Scene.deserializeObject(objectDescription);
         this.addChild(newObject)
-        
+
     }
 
     /**
     * Call method on all children and their children
      */
-    callMethod(name, args){
-        for(let child of this.children){
+    callMethod(name, args) {
+        for (let child of this.children) {
             child.callMethod(name, args);
         }
     }

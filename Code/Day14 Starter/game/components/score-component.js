@@ -1,11 +1,8 @@
 import * as Engine from "/engine/engine.js"
 
-class ScoreComponent extends Engine.Component{
-    static name = "ScoreComponent"
+export default  class ScoreComponent extends Engine.Component{
     constructor(gameObject){
         super(gameObject);
         this.score = 0;
     }
 }
-
-export default ScoreComponent;

@@ -1,7 +1,6 @@
 import * as Engine from "/engine/engine.js"
 
-class ChangeSceneComponent extends Engine.Component {
-  static name = "ChangeSceneComponent";
+export default  class ChangeSceneComponent extends Engine.Component {
   constructor(gameObject) {
     super(gameObject);
     this.ticks = 0;
@@ -16,5 +15,3 @@ class ChangeSceneComponent extends Engine.Component {
   }
 
 }
-
-export default ChangeSceneComponent;

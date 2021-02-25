@@ -1,7 +1,6 @@
 import * as Engine from "/engine/engine.js"
 
-class MoveComponent extends Engine.Component{
-    static name = "MoveComponent"
+export default  class MoveComponent extends Engine.Component{
     constructor(gameObject){
         super(gameObject);
     }
@@ -10,5 +9,3 @@ class MoveComponent extends Engine.Component{
         this.gameObject.y++;
     }
 }
-
-export default MoveComponent;

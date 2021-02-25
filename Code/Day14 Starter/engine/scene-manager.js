@@ -1,6 +1,6 @@
 import Scene from "./scene.js"
 
-class SceneManager {
+export default  class SceneManager {
 
   static currentScene;
   static allComponents;
@@ -17,5 +17,3 @@ class SceneManager {
 
   }
 }
-
-export default SceneManager

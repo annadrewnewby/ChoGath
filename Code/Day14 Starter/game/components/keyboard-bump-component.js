@@ -1,7 +1,6 @@
 import * as Engine from "/engine/engine.js"
 
-class KeyboardBumpComponent extends Engine.Component {
-  static name = "KeyboardBumpComponent";
+export default  class KeyboardBumpComponent extends Engine.Component {
   constructor(gameObject, speed = 1) {
     super(gameObject);
     this.speed = speed;
@@ -21,5 +20,3 @@ class KeyboardBumpComponent extends Engine.Component {
   }
 
 }
-
-export default KeyboardBumpComponent;

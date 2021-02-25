@@ -1,7 +1,6 @@
 import * as Engine from "/engine/engine.js"
 
-class KeyboardMoveComponent extends Engine.Component {
-  static name = "KeyboardMoveComponent";
+export default  class KeyboardMoveComponent extends Engine.Component {
   constructor(gameObject, speed = 1) {
     super(gameObject);
     this.speed = speed;
@@ -15,5 +14,3 @@ class KeyboardMoveComponent extends Engine.Component {
   }
 
 }
-
-export default KeyboardMoveComponent;

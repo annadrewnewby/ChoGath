@@ -1,4 +1,4 @@
-class Vector2{
+export default  class Vector2{
   x;
   y;
   constructor(one, two){
@@ -85,5 +85,3 @@ class Vector2{
   }
 
 }
-
-export default Vector2;

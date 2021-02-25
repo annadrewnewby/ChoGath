@@ -1,6 +1,5 @@
 import * as Engine from "/engine/engine.js"
-class ScreenTextComponent extends Engine.Component{
-    static name = "ScreenTextComponent"
+export default  class ScreenTextComponent extends Engine.Component{
     constructor(gameObject, string, options){
         super(gameObject);
 
@@ -16,5 +15,3 @@ class ScreenTextComponent extends Engine.Component{
         
     }
 }
-
-export default ScreenTextComponent;

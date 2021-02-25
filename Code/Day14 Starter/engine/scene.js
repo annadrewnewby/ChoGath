@@ -1,7 +1,7 @@
 import GameObject from "./game-object.js"
 import SceneManager from "./scene-manager.js"
 
-class Scene {
+export default  class Scene {
 
     children = [];
 
@@ -120,5 +120,3 @@ class Scene {
         }
     }
 }
-
-export default Scene;

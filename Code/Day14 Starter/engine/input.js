@@ -2,7 +2,7 @@ import SceneManager from "./scene-manager.js";
 import Scene from "./scene.js";
 import Vector2 from "./vector-2.js"
 
-class Input {
+export default  class Input {
   static keys = [];
   static keysDown = [];
   static keysUp = [];
@@ -146,10 +146,4 @@ class Input {
       return false;
     }
   }
-
-
-
-
 }
-
-export default Input;

@@ -1,6 +1,5 @@
 import Component from "../component.js"
-class DrawComponent extends Component{
-    static name = "DrawComponent"
+export default  class DrawComponent extends Component{
     constructor(gameObject, color){
         super(gameObject);
         this.color = color;
@@ -11,5 +10,3 @@ class DrawComponent extends Component{
 
     }
 }
-
-export default DrawComponent;

@@ -1,7 +1,6 @@
 import * as Engine from "/engine/engine.js"
 
-class MoleMakerComponent extends Engine.Component {
-  static name = "MoleMakerComponent";
+export default  class MoleMakerComponent extends Engine.Component {
   constructor(gameObject) {
     super(gameObject);
     this.tick = 0;
@@ -28,5 +27,3 @@ class MoleMakerComponent extends Engine.Component {
   }
 
 }
-
-export default MoleMakerComponent;

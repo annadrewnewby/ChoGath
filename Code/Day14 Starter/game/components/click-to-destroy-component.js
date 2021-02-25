@@ -1,7 +1,6 @@
 import * as Engine from "/engine/engine.js"
 
-class ClickToDestroyComponent extends Engine.Component {
-  static name = "ClickToDestroyComponent";
+export default  class ClickToDestroyComponent extends Engine.Component {
   constructor(gameObject, speed = 1) {
     super(gameObject);
     this.speed = speed;
@@ -23,5 +22,3 @@ class ClickToDestroyComponent extends Engine.Component {
   }
 
 }
-
-export default ClickToDestroyComponent;

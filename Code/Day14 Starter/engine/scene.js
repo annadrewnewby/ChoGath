@@ -55,7 +55,7 @@ export default class Scene {
      */
     addChild(child) {
         this.children.push(child)
-        child.callMethod("start", []);
+        //child.callMethod("start", []);
     }
 
     /**

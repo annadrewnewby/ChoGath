@@ -6,22 +6,32 @@ export default class MainControllerComponent extends Engine.Component {
   }
   start() {
     this.words = ["horse", "cow", "chicken", "rooster", "sheep", "pig", "goat", "rabbit", "bunny", "chick", "snake", "dog", "cat"]
-    this.word = this.words[Math.floor(Math.random() * this.words.length)]
-    console.log(this.word);
-    this.guesses = [];
-    this.booted = false;
-    this.gameOver = false;
-    this.maxGuesses = 5;
+    this.word = this.words[Math.floor(Math.random() * this.words.length)] //Get a random word
+    console.log(this.word); //For debugging
+    this.guesses = []; //Letters that have been guessed
+    this.booted = false;//We need to call some functions on the first update
+    this.gameOver = false; //Stop taking input if the game is over
+    this.maxGuesses = 5; //How many guesses the player has
+
+    this.scoreComponent = this.gameObject.getComponent("ScoreComponent");
+    this.sceneChanger = this.gameObject.getComponent("SceneChangerComponent");
+    this.scoreTextComponent = this.gameObject.getComponent("ScreenTextComponent")
+    this.correctTextObject = Engine.SceneManager.currentScene.getGameObject("CorrectText");
+    this.correctTextComponent = this.correctTextObject.getComponent("ScreenTextComponent")
+    this.guessedLettersObject = Engine.SceneManager.currentScene.getGameObject("GuessedLetters");
+    this.guessedLettersComponent = this.guessedLettersObject.getComponent("ScreenTextComponent")
+
   }
   update() {
     //Update the score
-    let score = this.gameObject.getComponent("ScoreComponent").score;
+    let score = this.scoreComponent.score;
     if (score >= this.maxGuesses) {
-      this.gameObject.getComponent("SceneChangerComponent").lose();
+      this.sceneChanger.lose();
       this.gameOver = true;
     }
-    let screenTextComponent = this.gameObject.getComponent("ScreenTextComponent");
-    screenTextComponent.string = score + "/" + this.maxGuesses;
+
+    //Draw the score
+    if (this.screenTextComponent) this.screenTextComponent.string = score + "/" + this.maxGuesses;
     if (!this.booted) {
       this.booted = true;
       this.updateStrings();
@@ -29,8 +39,7 @@ export default class MainControllerComponent extends Engine.Component {
   }
   updateStrings() {
     //Update the guessed word
-    let correctText = Engine.SceneManager.currentScene.getGameObject("CorrectText");
-    let correctTextComponent = correctText.getComponent("ScreenTextComponent")
+
     let maskedString = "";
     for (let i = 0; i < this.word.length; i++) {
       let char = this.word[i];
@@ -41,17 +50,16 @@ export default class MainControllerComponent extends Engine.Component {
         maskedString += "?"
       }
     }
-    correctTextComponent.string = maskedString;
+
+    this.correctTextComponent.string = maskedString;
     if (!maskedString.includes("?")) {
-      this.gameObject.getComponent("SceneChangerComponent").win();
+      this.sceneChanger.win();
       this.gameOver = true;
     }
 
 
     //Update the used letters
-    let guessedLetters = Engine.SceneManager.currentScene.getGameObject("GuessedLetters");
-    let guessedLettersComponent = guessedLetters.getComponent("ScreenTextComponent");
-    guessedLettersComponent.string = this.guesses.join(", ")
+    this.guessedLettersComponent.string = this.guesses.join(", ")
 
 
 

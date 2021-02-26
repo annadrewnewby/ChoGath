@@ -13,6 +13,7 @@ export default  class SceneManager {
     if (SceneManager.currentScene && proposedScene.name == SceneManager.currentScene.name) return console.log("Trying to change to the current scene " + sceneName)
     let scene = Scene.deserialize(proposedScene, SceneManager.allComponents, SceneManager.allPrefabs);  //Deserialize the scene definition
     SceneManager.currentScene = scene;
+    scene.callMethod("start")
 
 
   }

@@ -2,7 +2,7 @@ import SceneManager from "./scene-manager.js";
 import Scene from "./scene.js";
 import Vector2 from "./vector-2.js"
 
-export default  class Input {
+export default class Input {
   static keys = [];
   static keysDown = [];
   static keysUp = [];
@@ -39,14 +39,14 @@ export default  class Input {
     this.frameScrollWheel = this.scrollWheel;
     this.scrollWheel = 0;
 
-    SceneManager.currentScene.callMethod("onKeyDown", this.frameKeysDown);
-    SceneManager.currentScene.callMethod("onKeyUp", this.frameKeysUp);
+    if (Object.keys(this.frameKeysDown).length > 0) SceneManager.currentScene.callMethod("onKeyDown", this.frameKeysDown);
+    if (Object.keys(this.frameKeysUp).length > 0) SceneManager.currentScene.callMethod("onKeyUp", this.frameKeysUp);
 
     SceneManager.currentScene.callMethod("onMouseButtonDown", this.frameMouseButtonsDown);
     SceneManager.currentScene.callMethod("onMouseButtonUp", this.frameMouseButtonsUp);
     if (this.frameMousePosition && this.lastFrameMousePosition && !this.lastFrameMousePosition.equals(this.frameMousePosition))
       SceneManager.currentScene.callMethod("onMouseMove", this.frameMousePosition);
-    SceneManager.currentScene.callMethod("onScrollWheel", this.frameScrollWheel);   
+    SceneManager.currentScene.callMethod("onScrollWheel", this.frameScrollWheel);
   }
 
   static getKey(key) {

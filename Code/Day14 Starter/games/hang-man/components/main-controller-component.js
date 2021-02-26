@@ -3,12 +3,15 @@ import * as Engine from "/engine/engine.js"
 export default class MainControllerComponent extends Engine.Component {
   constructor(gameObject) {
     super(gameObject);
-    this.word = "maverick";
+  }
+  start() {
+    this.words = ["horse", "cow", "chicken", "rooster", "sheep", "pig", "goat", "rabbit", "bunny", "chick", "snake", "dog", "cat"]
+    this.word = this.words[Math.floor(Math.random() * this.words.length)]
+    console.log(this.word);
     this.guesses = [];
     this.booted = false;
     this.gameOver = false;
     this.maxGuesses = 5;
-
   }
   update() {
     //Update the score
@@ -29,21 +32,21 @@ export default class MainControllerComponent extends Engine.Component {
     let correctText = Engine.SceneManager.currentScene.getGameObject("CorrectText");
     let correctTextComponent = correctText.getComponent("ScreenTextComponent")
     let maskedString = "";
-    for(let i = 0; i < this.word.length; i++){
+    for (let i = 0; i < this.word.length; i++) {
       let char = this.word[i];
-      if(this.guesses.includes(char)){
+      if (this.guesses.includes(char)) {
         maskedString += char;
       }
-      else{
+      else {
         maskedString += "?"
       }
     }
     correctTextComponent.string = maskedString;
-    if(!maskedString.includes("?")){
+    if (!maskedString.includes("?")) {
       this.gameObject.getComponent("SceneChangerComponent").win();
       this.gameOver = true;
     }
-    
+
 
     //Update the used letters
     let guessedLetters = Engine.SceneManager.currentScene.getGameObject("GuessedLetters");
@@ -54,16 +57,15 @@ export default class MainControllerComponent extends Engine.Component {
 
   }
   onKeyDown(event) {
-    if(this.gameOver) return;
+    if (this.gameOver) return;
     let keys = Object.keys(event);
     console.log(keys)
     for (let key of keys) {
 
       //Regex from https://stackoverflow.com/a/8653681/10047920
-      if (!this.guesses.includes(key.toLowerCase()) && key.match(/^[a-zA-Z]$/) )
-      {
+      if (!this.guesses.includes(key.toLowerCase()) && key.match(/^[a-zA-Z]$/)) {
         this.guesses.push(key.toLowerCase());
-        if(!this.word.includes(key.toLowerCase())){
+        if (!this.word.includes(key.toLowerCase())) {
           this.gameObject.getComponent("ScoreComponent").score++;
         }
       }

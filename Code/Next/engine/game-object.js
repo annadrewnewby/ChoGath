@@ -51,12 +51,15 @@ export default class GameObject {
      * @param {2D Context from a Canvas} ctx where the game object is drawn
      */
     draw(ctx) {//How does the game object draw itself?
+        ctx.save();
+        ctx.translate(this.x, this.y);
         for (let component of this.components) {
             if (component.draw) component.draw(ctx);
         }
         for (let child of this.children) {
             child.draw(ctx);
         }
+        ctx.restore();
     }
 
     /**

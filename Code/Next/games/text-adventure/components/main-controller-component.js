@@ -81,5 +81,8 @@ export default class MainControllerComponent extends Engine.Component {
     }
     this.updateStrings()
   }
+  move(args){
+    console.log(args);
+  }
 
 }

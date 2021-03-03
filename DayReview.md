@@ -115,3 +115,9 @@ This file  contains links and text after every class that you can look back to a
 - Students can use keyboard and mouse polling
 - Students can explain why keyboard input is stored in a separate variable
 - Students can explain when to use events and when to use polling
+
+# Day 14 - 2021-03-01
+- students will understand the basics of version control systems
+- Students will understand how to implement basic games using the current game engine.
+- Students will be able to create state-based scene transitions
+- students will be able identify the components and scenes they need in their game.

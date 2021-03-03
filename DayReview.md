@@ -117,7 +117,16 @@ This file  contains links and text after every class that you can look back to a
 - Students can explain when to use events and when to use polling
 
 # Day 14 - 2021-03-01
-- students will understand the basics of version control systems
+- Students will understand the basics of version control systems
 - Students will understand how to implement basic games using the current game engine.
 - Students will be able to create state-based scene transitions
-- students will be able identify the components and scenes they need in their game.
+- Students will be able identify the components and scenes they need in their game.
+
+# Day 15 - 2021-03-03
+- Students will understand the difference between degrees and radians
+- Students will be able to convert to/from degrees and radians
+- Students will understand how to draw a circle as an arc
+- Students will be able to explain what transforms are
+- Students will be able to identify the three major transforms (translate, scale, rotate)
+- Students will have a basic understanding of how the order of transform operations matters
+- Students will be able to explain how to rotate an object about its center.

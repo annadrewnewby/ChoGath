@@ -9,6 +9,15 @@ export default {
       }
     },
     {
+      gameObject:{
+        name:"ScreenCamera",components:[
+          {name:"ScreenCameraComponent"}
+        ],children:[
+          
+        ]
+      }
+    },
+    {
       gameObject: {
         name: "Ground",
         components: [

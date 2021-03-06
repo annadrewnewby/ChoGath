@@ -9,6 +9,15 @@ export default {
       }
     },
     {
+      gameObject:{
+        name:"ScreenCamera",components:[
+          {name:"ScreenCameraComponent"}
+        ],children:[
+          
+        ]
+      }
+    },
+    {
       //If we have the "prefabName" key, then it's a prefab
       prefabName: "BlueRectangle",
       x: 300, //Set the position of the game object instance

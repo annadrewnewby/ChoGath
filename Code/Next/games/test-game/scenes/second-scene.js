@@ -9,6 +9,15 @@ export default {
       }
     },
     {
+      gameObject:{
+        name:"ScreenCamera",components:[
+          {name:"ScreenCameraComponent"}
+        ],children:[
+          
+        ]
+      }
+    },
+    {
       prefabName: "RedRectangle",
       /* x and y are optional */
     },

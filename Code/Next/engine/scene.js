@@ -69,6 +69,7 @@ export default class Scene {
      * @param {2D Rendering Context from a Canvas} ctx the 2D context to which we draw
      */
     draw(ctx) {
+        //Draw the world camera
         ctx.save();
 
         ctx.translate(-this.camera.transform.position.x, -this.camera.transform.position.y);
@@ -76,12 +77,20 @@ export default class Scene {
         //Loop through all the game objects and render them.
         for (let i = 0; i < this.children.length; i++) {
             let child = this.children[i];
+            if(child.name == "ScreenCamera") continue;
             child.draw(ctx);
         }
+        ctx.restore();
+        //Now draw the screen camera
+        ctx.save();
+        this.screenCamera.draw(ctx)
         ctx.restore();
     }
     get camera() {
         return this.getGameObject("MainCamera");
+    }
+    get screenCamera(){
+        return this.getGameObject("ScreenCamera")
     }
 
     /**

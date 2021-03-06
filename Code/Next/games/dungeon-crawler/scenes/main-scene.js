@@ -9,6 +9,17 @@ export default {
       }
     },
     {
+      gameObject:{
+        name:"ScreenCamera",components:[
+          {name:"ScreenCameraComponent"}
+        ],children:[
+          
+          { gameObject: { name: "ScreenTextShadow", components: [{ name: "ScreenTextComponent", args: ["Dungeon Crawler Example", { color: "gray" }] }] }, x: 102, y: 42 },
+          { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["Dungeon Crawler Example", { color: "white" }] }] }, x: 100, y: 40 },
+        ]
+      }
+    },
+    {
       gameObject: {
         name: "Ground",
         components: [
@@ -21,7 +32,5 @@ export default {
       prefabName: "MainController"
     },
     { prefabName: "Hero", x: 320, y: 340 },
-    { gameObject: { name: "ScreenTextShadow", components: [{ name: "ScreenTextComponent", args: ["Dungeon Crawler Example", { color: "gray" }] }] }, x: 102, y: 42 },
-    { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["Dungeon Crawler Example", { color: "white" }] }] }, x: 100, y: 40 },
   ]
 }

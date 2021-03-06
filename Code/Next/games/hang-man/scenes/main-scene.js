@@ -2,6 +2,13 @@ export default {
   name: "MainScene",
   children: [
     {
+      gameObject:{
+        name:"MainCamera",components:[
+          {name:"WorldCameraComponent"}
+        ]
+      }
+    },
+    {
       gameObject: {
         name: "MainController", components: [
           { name: "ScreenTextComponent", args: ["0", { color: "white" }] },

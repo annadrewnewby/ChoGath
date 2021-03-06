@@ -2,6 +2,13 @@ export default {
   name: "BlueScene",
   children: [
     {
+      gameObject:{
+        name:"MainCamera",components:[
+          {name:"WorldCameraComponent"}
+        ]
+      }
+    },
+    {
       gameObject: {
         name: "Ground",
         components: [

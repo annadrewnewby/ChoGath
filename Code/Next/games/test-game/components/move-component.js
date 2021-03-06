@@ -5,7 +5,7 @@ export default  class MoveComponent extends Engine.Component{
         super(gameObject);
     }
     update(){
-        this.gameObject.x++; 
-        this.gameObject.y++;
+        this.gameObject.transform.position.x++; 
+        this.gameObject.transform.position.y++;
     }
 }

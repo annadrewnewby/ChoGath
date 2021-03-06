@@ -12,8 +12,8 @@ export default class ScreenButtonClickComponent extends Engine.Component {
   }
   onMouseButtonDown(event) {
     let loc = event.location;
-    let x = this.gameObject.x;
-    let y = this.gameObject.y;
+    let x = this.gameObject.transform.position.x;
+    let y = this.gameObject.transform.position.y;
     let w = this.rectangleComponent.width;
     let h = this.rectangleComponent.height;
 

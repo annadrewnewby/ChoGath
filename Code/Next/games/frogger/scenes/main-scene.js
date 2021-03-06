@@ -1,6 +1,13 @@
 export default {
   name: "MainScene",
   children: [
+    {
+      gameObject:{
+        name:"MainCamera",components:[
+          {name:"WorldCameraComponent"}
+        ]
+      }
+    },
     { gameObject: { name: "SafetyZone", components: [{ name: "DrawGeometryComponent", args: ["brown"] }, { name: "RectangleGeometryComponent", args: [640, 100] },] }, x: 320, y: 480 },
     { gameObject: { name: "RoadOne", components: [{ name: "DrawGeometryComponent", args: ["gray"] }, { name: "RectangleGeometryComponent", args: [640, 100] },] }, x: 320, y: 380 },
     { gameObject: { name: "RoadTwo", components: [{ name: "DrawGeometryComponent", args: ["darkgray"] }, { name: "RectangleGeometryComponent", args: [640, 100] },] }, x: 320, y: 280 },

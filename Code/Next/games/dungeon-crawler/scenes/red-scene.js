@@ -2,6 +2,13 @@ export default {
   name: "RedScene",
   children: [
     {
+      gameObject:{
+        name:"MainCamera",components:[
+          {name:"WorldCameraComponent"}
+        ]
+      }
+    },
+    {
       gameObject: {
         name: "Ground",
         components: [

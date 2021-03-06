@@ -2,6 +2,13 @@ export default {
   name: "FirstScene", //Scene name
   children:[ //Game objects in the scene
     {
+      gameObject:{
+        name:"MainCamera",components:[
+          {name:"WorldCameraComponent"}
+        ]
+      }
+    },
+    {
       //If we have the "prefabName" key, then it's a prefab
       prefabName: "BlueRectangle",
       x: 300, //Set the position of the game object instance

@@ -22,7 +22,7 @@ function boot(mainSceneTitle) {
   Engine.SceneManager.allComponents = [...Object.keys(Engine.EngineComponents).map(i => EngineComponents[i]), ...Object.keys(GameComponents).map(i => GameComponents[i])];
   Engine.SceneManager.allPrefabs = Object.keys(GamePrefabs).map(i => GamePrefabs[i]);
   Engine.SceneManager.allScenes = Object.keys(GameScenes).map(i=>GameScenes[i]);
-  Engine.SceneManager.changeScene(mainSceneTitel);
+  Engine.SceneManager.changeScene(mainSceneTitle);
 
   /* Update and draw our game */
   function gameLoop() {

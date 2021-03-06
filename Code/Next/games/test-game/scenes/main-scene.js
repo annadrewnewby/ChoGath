@@ -1,6 +1,13 @@
 export default {
   name: "MainScene", //Scene name
   children: [ //Game objects in the scene
+    {
+      gameObject:{
+        name:"MainCamera",components:[
+          {name:"WorldCameraComponent"}
+        ]
+      },x:-100,y:-100
+    },
     { prefabName: "KeyboardRectangle", x: 300, y: 300 },
     { prefabName: "KeyboardBumpRectangle", x: 50, y: 300 },
     {

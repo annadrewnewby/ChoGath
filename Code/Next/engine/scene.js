@@ -70,7 +70,9 @@ export default class Scene {
      */
     draw(ctx) {
         ctx.save();
-        ctx.translate(this.camera.transform.position.x, this.camera.transform.position.y);
+
+        ctx.translate(-this.camera.transform.position.x, -this.camera.transform.position.y);
+        ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2);
         //Loop through all the game objects and render them.
         for (let i = 0; i < this.children.length; i++) {
             let child = this.children[i];

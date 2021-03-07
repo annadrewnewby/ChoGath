@@ -19,7 +19,7 @@ export default class Scene {
         gameObject.transform.position.y = objectDefinition.y || 0; //Set the y or default to 0
         gameObject.transform.scale.x = objectDefinition.sx || 1; //Set the y or default to 0
         gameObject.transform.scale.y = objectDefinition.sy || 1; //Set the y or default to 0
-        gameObject.transform.rotation = objectDefinition.r || 1; //Set the y or default to 0
+        gameObject.transform.rotation = objectDefinition.r || 0; //Set the y or default to 0
         return gameObject
     }
 
@@ -40,7 +40,7 @@ export default class Scene {
             gameObject.transform.position.y = objectDefinition.y || 0; //Set the y or default to 0
             gameObject.transform.scale.x = objectDefinition.sx || 1; //Set the y or default to 0
             gameObject.transform.scale.y = objectDefinition.sy || 1; //Set the y or default to 0
-            gameObject.transform.rotation = objectDefinition.r || 1; //Set the y or default to 0
+            gameObject.transform.rotation = objectDefinition.r || 0; //Set the y or default to 0
             toReturn.addChild(gameObject);
         }
         return toReturn;
@@ -74,6 +74,7 @@ export default class Scene {
 
         ctx.translate(-this.camera.transform.position.x, -this.camera.transform.position.y);
         ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2);
+        ctx.scale(this.camera.transform.scale.x, this.camera.transform.scale.y)
         //Loop through all the game objects and render them.
         for (let i = 0; i < this.children.length; i++) {
             let child = this.children[i];

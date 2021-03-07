@@ -6,7 +6,7 @@ export default {
         name:"MainCamera",components:[
           {name:"WorldCameraComponent"}
         ]
-      }
+      },sx:20,sy:20
     },
     {
       gameObject:{
@@ -22,14 +22,14 @@ export default {
         name: "Ground",
         components: [
           { name: "DrawGeometryComponent", args: ["pink"] },
-          { name: "RectangleGeometryComponent", args: [640, 480] },
+          { name: "RectangleGeometryComponent", args: [8, 8] },
         ]
-      }, x:320, y:340
+      }, x:0, y:0
     },
     {
       prefabName:"MainController"
     },
-    { prefabName: "Hero", x: 320, y: 340 },
+    { prefabName: "Hero", x: 0, y: 0 },
     
   ]
 }

@@ -15,11 +15,11 @@ export default class Scene {
 
         if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
         gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
-        gameObject.transform.position.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
-        gameObject.transform.position.y = objectDefinition.y || 0; //Set the y or default to 0
-        gameObject.transform.scale.x = objectDefinition.sx || 1; //Set the y or default to 0
-        gameObject.transform.scale.y = objectDefinition.sy || 1; //Set the y or default to 0
-        gameObject.transform.rotation = objectDefinition.r || 0; //Set the y or default to 0
+        gameObject.transform.position.x = objectDefinition.x || gameObjectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
+        gameObject.transform.position.y = objectDefinition.y || gameObjectDefinition.y || 0; //Set the y or default to 0
+        gameObject.transform.scale.x = objectDefinition.sx || gameObjectDefinition.sx || 1; //Set the y or default to 0
+        gameObject.transform.scale.y = objectDefinition.sy || gameObjectDefinition.sy || 1; //Set the y or default to 0
+        gameObject.transform.rotation = objectDefinition.r || gameObjectDefinition.r || 0; //Set the y or default to 0
         return gameObject
     }
 
@@ -27,20 +27,7 @@ export default class Scene {
         let toReturn = new Scene(); //Create a new Scene
         toReturn.name = sceneDefinition.name; //Set the scene's name (for reference later when we are changing scenes)
         for (let objectDefinition of sceneDefinition.children) { //Loop over all the children.
-            let gameObject;
-            let gameObjectDefinition;
-            if (objectDefinition.prefabName) //It's a prefab
-                gameObjectDefinition = SceneManager.allPrefabs.find(i => i.name == objectDefinition.prefabName);
-            else //It's a one-off game object 
-                gameObjectDefinition = objectDefinition.gameObject;
-
-            if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
-            gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
-            gameObject.transform.position.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
-            gameObject.transform.position.y = objectDefinition.y || 0; //Set the y or default to 0
-            gameObject.transform.scale.x = objectDefinition.sx || 1; //Set the y or default to 0
-            gameObject.transform.scale.y = objectDefinition.sy || 1; //Set the y or default to 0
-            gameObject.transform.rotation = objectDefinition.r || 0; //Set the y or default to 0
+            let gameObject = this.deserializeObject(objectDefinition)
             toReturn.addChild(gameObject);
         }
         return toReturn;

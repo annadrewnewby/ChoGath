@@ -1,14 +1,20 @@
 export default {
   name: "MainScene", //Scene name
   children: [ //Game objects in the scene
-    { prefabName: "KeyboardRectangle", x: 300, y: 300 },
-    { prefabName: "KeyboardBumpRectangle", x: 50, y: 300 },
     {
-      prefabName: "ClickToDestroy",
-      x: 0, y: 0
+      gameObject:{
+        name:"MainCamera",components:[
+          {name:"WorldCameraComponent"}
+        ]
+      },x:-100,y:-100
     },
     {
       gameObject: {
+        name:"ScreenCamera",components:[
+          {name:"ScreenCameraComponent"}
+        ],children:[
+          {
+            gameObject: {
         name: "ScreenText",
         components: [
           {
@@ -19,6 +25,16 @@ export default {
       },
       x: 400, y: 40
     },
+        ]
+      }
+    },
+    { prefabName: "KeyboardRectangle", x: 300, y: 300 },
+    { prefabName: "KeyboardBumpRectangle", x: 50, y: 300 },
+    {
+      prefabName: "ClickToDestroy",
+      x: 0, y: 0
+    },
+    
     {
       gameObject: {
         name: "MainController",

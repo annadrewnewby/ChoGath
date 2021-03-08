@@ -2,6 +2,18 @@ export default {
   name: "BlueScene",
   children: [
     {
+      prefabName: "MainCamera"
+    },
+    {
+      gameObject:{
+        name:"ScreenCamera",components:[
+          {name:"ScreenCameraComponent"}
+        ],children:[
+          
+        ]
+      }
+    },
+    {
       gameObject: {
         name: "Ground",
         components: [

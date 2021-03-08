@@ -24,17 +24,7 @@ export default class Scene {
         let toReturn = new Scene(); //Create a new Scene
         toReturn.name = sceneDefinition.name; //Set the scene's name (for reference later when we are changing scenes)
         for (let objectDefinition of sceneDefinition.children) { //Loop over all the children.
-            let gameObject;
-            let gameObjectDefinition;
-            if (objectDefinition.prefabName) //It's a prefab
-                gameObjectDefinition = SceneManager.allPrefabs.find(i => i.name == objectDefinition.prefabName);
-            else //It's a one-off game object 
-                gameObjectDefinition = objectDefinition.gameObject;
-
-            if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
-            gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
-            gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
-            gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
+            let gameObject = this.deserializeObject(objectDefinition)
             toReturn.addChild(gameObject);
         }
         return toReturn;
@@ -66,20 +56,24 @@ export default class Scene {
         //Loop through all the game objects and render them.
         for (let i = 0; i < this.children.length; i++) {
             let child = this.children[i];
-            if (child.getComponent("RotatorComponent")) {
-                ctx.save()
-                ctx.translate(100, 100);
-                ctx.translate(50, 100);
-                ctx.rotate(child.getComponent("RotatorComponent").rotation * Math.PI / 180);
-                ctx.translate(-50, -100);
-                ctx.translate(-100, -100)
-                child.draw(ctx);
-                ctx.restore();
-            }
-            else
-                child.draw(ctx);
+            if (child.name == "ScreenCamera") continue;
+            child.draw(ctx);
         }
+        ctx.restore();
+        //Now draw the screen camera
+        ctx.save();
+        this.screenCamera.draw(ctx)
+        ctx.restore();
     }
+
+    get camera() {
+        return this.getGameObject("MainCamera");
+    }
+    get screenCamera(){
+        return this.getGameObject("ScreenCamera")
+    }
+
+
 
     /**
      * Update all the Gamebjects

@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+
+<head>
+  <title></title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <script src="https://kit.fontawesome.com/5d9fcad015.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <v-app>
+      <v-main>
+        <v-container>
+          <v-row>
+            <v-col>
+              Stats:
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-card>
+                <v-card-title>
+                  <v-icon class="blue--text">fa-utensils</v-icon>&nbsp;</v-spacer> {{vitals.hunger}}
+                  <v-spacer></v-spacer>
+                  <v-icon class="blue--text text--accent-1">fa-tint</v-icon>&nbsp; {{vitals.thirst}}
+                  <v-spacer></v-spacer>
+                  <v-icon class="blue--text">fa-thermometer</v-icon>&nbsp; {{vitals.warmth }}
+                  <v-spacer></v-spacer>
+                  <v-icon class="blue--text text--accent-1">fa-bed</v-icon>&nbsp; {{vitals.sleep }}
+                  <v-spacer></v-spacer>
+                  <v-icon class="blue--text">fa-shower</v-icon>&nbsp; {{vitals.hygiene}}
+                  <v-spacer></v-spacer>
+                  <v-icon class="blue--text text--accent-1">fa-coins</v-icon>&nbsp; ${{vitals.cash}}
+                </v-card-title>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-card>
+                <v-card-title>
+                  <v-icon class="green--text">fa-clock</v-icon>&nbsp; Day: {{Time.day + 1}} {{("" +
+                  Time.hour).padStart(2,"0")}}:{{(""+Time.minute).padStart(2,"0")}}
+                  <v-spacer></v-spacer>
+                  <v-icon class="green--text accent-1">fa-sun</v-icon>&nbsp;{{weather.clear}}
+                  <v-spacer></v-spacer>
+                  <v-icon class="green--text">fa-wind</v-icon>&nbsp;{{weather.wind}}
+                  <v-spacer></v-spacer>
+                  <v-icon class="green--text accent-1">fa-cloud-rain</v-icon>&nbsp;{{weather.rain}}
+                  <v-spacer></v-spacer>
+                  <v-icon class="green--text accent-1">fa-thermometer-quarter</v-icon>&nbsp;{{weather.temperature + "&deg;"}}
+                  <v-spacer></v-spacer>
+
+                </v-card-title>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols=2>
+              <v-card>
+                <v-container>
+                  <v-row>
+                    <v-col>
+                      Clothes:
+
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-card flat>
+                        <v-card-title>
+                          <v-icon class="orange--text">fa-hat-cowboy-side</v-icon>
+                        </v-card-title>
+                        <v-card-text class="white--text">
+                          <div v-for="(hat,i) in clothes.hats" :key="i">
+                            {{hat.name}}
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-card flat>
+                        <v-card-title>
+                          <v-icon class="orange--text text--accent-1">fa-tshirt</v-icon>
+                        </v-card-title>
+                        <v-card-text class="white--text">
+                          <div v-for="(shirt,i) in clothes.shirts" :key="i">
+                            {{shirt.name}}
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-card flat>
+                        <v-card-title>
+                          <v-icon class="orange--text">fa-bacon</v-icon>
+                        </v-card-title>
+                        <v-card-text class="white--text">
+                          <div v-for="(pants,i) in clothes.pants" :key="i">
+                            {{pants.name}}
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-card flat>
+                        <v-card-title>
+                          <v-icon class="orange--text text--accent-1">fa-socks</v-icon>
+                        </v-card-title>
+                        <v-card-text class="white--text">
+                          <div v-for="(socks,i) in clothes.socks" :key="i">
+                            {{socks.name}}
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-card flat>
+                        <v-card-title>
+                          <v-icon class="orange--text">fa-shoe-prints</v-icon>
+                        </v-card-title>
+                        <v-card-text class="white--text">
+                          <div v-for="(shoes,i) in clothes.shoes" :key="i">
+                            {{shoes.name}}
+                          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-col>
+
+
+            <v-col cols=10 class="blue-grey">
+              <v-container>
+                <v-row>
+                  <v-col>
+                    Where you are:
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <v-card class="blue-grey darken-1">
+                      <v-card-title>
+                        {{location.name}}
+                      </v-card-title>
+                      <v-card-text class="white--text">
+                        {{}}
+                    </v-card>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    Where you can go:
+                  </v-col>
+                </v-row>
+                <v-row v-for="(route,i) in location.connections" :key="i">
+                  <v-col>
+                    <v-card class="blue-grey darken-1">
+                      <v-card-title>
+                        <v-btn @click="go(route)" icon x-large dark>
+                          <v-icon>
+                            fa-arrow-circle-right
+                          </v-icon>
+                        </v-btn> 
+                        {{route.name}}
+                      </v-card-title>
+                    </v-card>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    What you can do:
+                  </v-col>
+                </v-row>
+                <v-row v-for="(activity,i) in []" :key="i">
+                  <v-col>
+                    <v-card class="blue-grey darken-1">
+                      <v-card-title>
+                        <v-btn @click="go(route)" icon x-large dark>
+                          <v-icon>
+                            fa-arrow-circle-right
+                          </v-icon>
+                        </v-btn> {{activity.name}}
+                      </v-card-title>
+                    </v-card>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    What you have:
+                  </v-col>
+                </v-row>
+                <v-row v-for="(container,i) in []" :key="i">
+                  <v-col>
+                    <v-card class="blue-grey darken-1">
+                      <v-card-title>
+                        {{container.name}}
+                      </v-card-title>
+                    </v-card>
+                    <v-card-text class="text--black">
+                      <div v-for="(item,j) in []" :key="j">
+                        {{item.name}}
+                      </div>
+                    </v-card-text>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+  <script src='https://unpkg.com/vue'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script type="module">
+    import * as Engine from "/engine/engine.js"
+
+    import * as GameScenes from "./scenes/game-scenes.js"
+    import * as GamePrefabs from "./prefabs/game-prefabs.js"
+    import * as EngineComponents from "/engine/components/engine-components.js"
+    import * as GameComponents from "./components/game-components.js"
+
+    function boot(mainSceneName) {
+      Engine.SceneManager.allComponents = [...Object.keys(Engine.EngineComponents).map(i => EngineComponents[i]), ...Object.keys(GameComponents).map(i => GameComponents[i])];
+      Engine.SceneManager.allPrefabs = Object.keys(GamePrefabs).map(i => GamePrefabs[i]);
+      Engine.SceneManager.allScenes = Object.keys(GameScenes).map(i => GameScenes[i]);
+      Engine.SceneManager.changeScene(mainSceneName);
+
+      /* Update and draw our game */
+      function gameUpdate() {
+        let currentScene = Engine.SceneManager.currentScene;
+        currentScene.update();
+        currentScene.cullDestroyed();
+      }
+    }
+
+    
+
+    const app = new Vue({
+      el: '#app',
+      vuetify: new Vuetify({ theme: { dark: true } }),
+      data: {
+        character: null,
+        Engine:Engine
+      },
+      computed: {
+        getWeatherIcon() {
+          // if(this.World.weather == Weather.Fair){
+          //   return "fa-cloud-sun";
+          // }
+          // return "fa-home";
+        },
+        Time(){
+          return Engine.SceneManager.currentScene.getGameObject("Time").getComponent("TimeComponent");
+        },
+        vitals(){
+          return Engine.SceneManager.currentScene.getGameObject("PersonPrefab").getComponent("VitalsComponent")
+        },
+        clothes(){
+          return Engine.SceneManager.currentScene.getGameObject("PersonPrefab").getComponent("ClothesComponent")
+        },
+        weather(){
+          return Engine.SceneManager.currentScene.getGameObject("WeatherPrefab").getComponent("WeatherComponent")
+        },
+        locations(){
+          return Engine.SceneManager.currentScene.getGameObject("MainController").getComponent("MainControllerComponent").locations;
+        },
+        location(){
+          return Engine.SceneManager.currentScene.getGameObject("MainController").getComponent("MainControllerComponent").location;
+        }
+
+
+
+      },
+      created() {
+        boot("MainScene")
+
+       
+
+        // let startAlley = new Location("Alley", "A narrow alley between to buildings. One end is blocked by a fence. The other end is open");
+        // let alleyEntrance = new Location("Alley entrance.", "The entrance to a bare alley.")
+
+        // startAlley.routes.push(new Route("Entance to the alley.", "You see the entrance to the alley you are in.", alleyEntrance, 5));
+        // alleyEntrance.routes.push(new Route("Inside the alley", "It's dark down there.", startAlley, 5));
+
+
+        // this.character = new Character(startAlley);
+        // this.character.shirts.push(new Shirt("T-Shirt", "Just a simple, shortsleeve shirt. Red. Doesn't help you keep very warm."));
+        // //this.character.hat.push(new Shirt("A Tee Shirt", "Just a simple, shortsleeve shirt. Doesn't help you keep very warm."));
+        // this.character.pants.push(new Pants("Jeans", "Simple blue jeans. Durable, but not very warming"));
+        // this.character.socks.push(new Socks("White Socks", "Very ordinary white socks. Cotton. Not very warming"));
+        // this.character.shoes.push(new Shoes("Sneakers", "Simple sneakers. Low top, not very warming."));
+
+        // let waterBottle = _.cloneDeep(Things.WaterBottle);
+        // this.character.containers.find(i=>i.name == "Left Hand").items.push(waterBottle);
+
+
+
+      },
+      methods: {
+        // go(route) {
+        //   this.character.go(route);
+        // }
+      },
+    });
+
+  </script>
+</body>
+
+</html>

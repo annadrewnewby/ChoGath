@@ -1,5 +1,7 @@
 import Scene from "./scene.js"
 import SceneManager from "./scene-manager.js"
+import TransformComponent from "./components/transform-component.js";
+
 
 /**
  * @class GameObject representing a game object in the scene
@@ -18,7 +20,7 @@ export default class GameObject {
         if (gameObjectDefinition.children)
             for (let childDefinition of gameObjectDefinition.children) {
                 let child = Scene.deserializeObject(childDefinition);
-                toReturn.children.push(child);
+                toReturn.transform.children.push(child);
             }
         return toReturn;
     }
@@ -27,12 +29,13 @@ export default class GameObject {
      * Set the default values of x and y
      */
     constructor() {
-        this.x = 0;
-        this.y = 0;
         this.components = [];
-        this.children = [];
         this.markedDestroy = false;
+        this.components.push(new TransformComponent(this));
 
+    }
+    get transform(){
+        return this.components[0];
     }
     /**
      * Update the game by iterating over every game object and calling update if available.
@@ -41,7 +44,7 @@ export default class GameObject {
         for (let component of this.components) {
             if (component.update) component.update();
         }
-        for (let child of this.children) {
+        for (let child of this.transform.children) {
             child.update();
         }
     }
@@ -52,11 +55,13 @@ export default class GameObject {
      */
     draw(ctx) {//How does the game object draw itself?
         ctx.save();
-        ctx.translate(this.x, this.y);
+        ctx.translate(this.transform.position.x, this.transform.position.y);
+        //ctx.scale(this.transform.scale.x, this.transform.scale.y);
+        ctx.rotate(this.transform.rotation);
         for (let component of this.components) {
             if (component.draw) component.draw(ctx);
         }
-        for (let child of this.children) {
+        for (let child of this.transform.children) {
             child.draw(ctx);
         }
         ctx.restore();
@@ -73,7 +78,7 @@ export default class GameObject {
      * Get a game object by name
      */
     getGameObject(name) {
-        for (let child of this.children) {
+        for (let child of this.transform.children) {
             if (child.name == name) return child;
             let foundChild = child.getGameObject(name);
             if (foundChild) return foundChild;
@@ -90,7 +95,7 @@ export default class GameObject {
                 return component;
         }
         //If we didn't find it, search any children we have
-        for (let child of this.children) {
+        for (let child of this.transform.children) {
             let component = child.getComponent(name);
             if (component) return component;
         }
@@ -104,7 +109,7 @@ export default class GameObject {
             if (component[name])
                 component[name](args);
         }
-        for (let child of this.children) {
+        for (let child of this.transform.children) {
             child.callMethod(name, args);
         }
     }

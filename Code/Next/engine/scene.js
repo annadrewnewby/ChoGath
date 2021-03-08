@@ -15,26 +15,19 @@ export default class Scene {
 
         if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
         gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
-        gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
-        gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
+        gameObject.transform.position.x = objectDefinition.x || gameObjectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
+        gameObject.transform.position.y = objectDefinition.y || gameObjectDefinition.y || 0; //Set the y or default to 0
+        gameObject.transform.scale.x = objectDefinition.sx || gameObjectDefinition.sx || 1; //Set the y or default to 0
+        gameObject.transform.scale.y = objectDefinition.sy || gameObjectDefinition.sy || 1; //Set the y or default to 0
+        gameObject.transform.rotation = objectDefinition.r || gameObjectDefinition.r || 0; //Set the y or default to 0
         return gameObject
     }
-    
+
     static deserialize(sceneDefinition) {
         let toReturn = new Scene(); //Create a new Scene
         toReturn.name = sceneDefinition.name; //Set the scene's name (for reference later when we are changing scenes)
         for (let objectDefinition of sceneDefinition.children) { //Loop over all the children.
-            let gameObject;
-            let gameObjectDefinition;
-            if (objectDefinition.prefabName) //It's a prefab
-            gameObjectDefinition = SceneManager.allPrefabs.find(i => i.name == objectDefinition.prefabName);
-            else //It's a one-off game object 
-            gameObjectDefinition = objectDefinition.gameObject;
-            
-            if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
-            gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
-            gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
-            gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
+            let gameObject = this.deserializeObject(objectDefinition)
             toReturn.addChild(gameObject);
         }
         return toReturn;
@@ -63,11 +56,29 @@ export default class Scene {
      * @param {2D Rendering Context from a Canvas} ctx the 2D context to which we draw
      */
     draw(ctx) {
+        //Draw the world camera
+        ctx.save();
+
+        ctx.translate(-this.camera.transform.position.x, -this.camera.transform.position.y);
+        ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2);
+        ctx.scale(this.camera.transform.scale.x, this.camera.transform.scale.y)
         //Loop through all the game objects and render them.
         for (let i = 0; i < this.children.length; i++) {
             let child = this.children[i];
+            if(child.name == "ScreenCamera") continue;
             child.draw(ctx);
         }
+        ctx.restore();
+        //Now draw the screen camera
+        ctx.save();
+        this.screenCamera.draw(ctx)
+        ctx.restore();
+    }
+    get camera() {
+        return this.getGameObject("MainCamera");
+    }
+    get screenCamera(){
+        return this.getGameObject("ScreenCamera")
     }
 
     /**

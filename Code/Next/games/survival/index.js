@@ -1,11 +1,11 @@
-import * as Engine from "../../../engine/engine.js"
+import * as Engine from "/engine/engine.js"
 
 import * as GameScenes from "./scenes/game-scenes.js"
 import * as GamePrefabs from "./prefabs/game-prefabs.js"
 import * as EngineComponents from "/engine/components/engine-components.js"
 import * as GameComponents from "./components/game-components.js"
 
-function boot(mainSceneTitle) {
+function boot(mainSceneName) {
 
   /* Attach singleton classe to global this */
  
@@ -22,7 +22,7 @@ function boot(mainSceneTitle) {
   Engine.SceneManager.allComponents = [...Object.keys(Engine.EngineComponents).map(i => EngineComponents[i]), ...Object.keys(GameComponents).map(i => GameComponents[i])];
   Engine.SceneManager.allPrefabs = Object.keys(GamePrefabs).map(i => GamePrefabs[i]);
   Engine.SceneManager.allScenes = Object.keys(GameScenes).map(i=>GameScenes[i]);
-  Engine.SceneManager.changeScene(mainSceneTitle);
+  Engine.SceneManager.changeScene(mainSceneName);
 
   /* Update and draw our game */
   function gameLoop() {

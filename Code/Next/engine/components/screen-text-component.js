@@ -1,4 +1,4 @@
-import * as Engine from "/engine/engine.js"
+import * as Engine from "../../../engine/engine.js"
 export default  class ScreenTextComponent extends Engine.Component{
     constructor(gameObject, string, options){
         super(gameObject);

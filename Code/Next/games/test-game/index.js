@@ -1,4 +1,4 @@
-import * as Engine from "/engine/engine.js"
+import * as Engine from "../../../engine/engine.js"
 
 import * as GameScenes from "./scenes/game-scenes.js"
 import * as GamePrefabs from "./prefabs/game-prefabs.js"

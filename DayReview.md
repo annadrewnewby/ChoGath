@@ -130,3 +130,12 @@ This file  contains links and text after every class that you can look back to a
 - Students will be able to identify the three major transforms (translate, scale, rotate)
 - Students will have a basic understanding of how the order of transform operations matters
 - Students will be able to explain how to rotate an object about its center.
+
+# Day 16 - 2021-03-08
+- Students will understand local (model) coordinates
+- Students will be able to describe the two cameras used in a scene
+- Students will be able to describe the use of the transform component
+- Students will write their game using cameras and transform components
+- Students can describe how the camera is affected by translations, scales, and rotations
+- Students can describe the changes needed to go from a 2D to 3D game engine in terms of transformations
+

@@ -3,11 +3,15 @@ export default {
   children:[],
   components:[
     {
-      name:"DrawComponent",
+      name:"DrawGeometryComponent", //Name of the component
       args:["red"]
     },
     {
       name:"MoveComponent"
+    }
+    ,
+    {
+      name:"RectangleGeometryComponent", args:[100,200]
     }
 
   ]

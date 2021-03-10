@@ -62,7 +62,8 @@ export default {
               name:"rotator",
               components:[
                 {
-                  name:"DrawComponent", args:["magenta"]
+                  name:"DrawGeometryComponent", //Name of the component
+      
                 },
                 {
                   name:"RotatorComponent"

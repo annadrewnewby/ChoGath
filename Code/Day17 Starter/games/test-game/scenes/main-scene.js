@@ -6,7 +6,7 @@ export default {
         name:"MainCamera",components:[
           {name:"WorldCameraComponent"}
         ]
-      },x:-100,y:-100
+      }
     },
     {
       gameObject: {
@@ -23,7 +23,7 @@ export default {
           }
         ]
       },
-      x: 400, y: 40
+      x: 40, y: 40
     },
         ]
       }

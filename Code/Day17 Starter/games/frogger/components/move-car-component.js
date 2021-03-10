@@ -5,6 +5,6 @@ export default  class MoveCarComponent extends Engine.Component{
         super(gameObject);
     }
     update(){
-        this.gameObject.transform.x+=.1; 
+        this.gameObject.transform.position.x+=.1; 
     }
 }

@@ -11,10 +11,10 @@ export default  class KeyboardBumpComponent extends Engine.Component {
     if(keys["d"] || keys["ArrowRight"]) this.gameObject.transform.position.x += 1 * this.speed
     if(keys["w"] || keys["ArrowUp"]) this.gameObject.transform.position.y -= 1 * this.speed
     if(keys["s"] || keys["ArrowDown"]) this.gameObject.transform.position.y += 1 * this.speed
-    if(this.gameObject.transform.position.x < 0 
-      || this.gameObject.transform.position.x > 600 
+    if(this.gameObject.transform.position.x < -4
+      || this.gameObject.transform.position.x > 4 
       || this.gameObject.transform.position.y <0 
-      || this.gameObject.transform.position.y > 525){
+      || this.gameObject.transform.position.y > 4){
       //We are out of bounds, so revert back
       this.gameObject.transform.position.x = originalPosition.x;
       this.gameObject.transform.position.y = originalPosition.y;

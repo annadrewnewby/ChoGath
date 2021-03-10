@@ -14,8 +14,8 @@ export default {
           {name:"ScreenCameraComponent"}
         ],children:[
           
-    { gameObject: { name: "ScreenTextShadow", components: [{ name: "ScreenTextComponent", args: ["'Frogger' Game Example", { color: "gray" }] }] }, x: 102, y: 42 },
-    { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["'Frogger' Game Example", { color: "white" }] }] }, x: 100, y: 40 },
+    { gameObject: { name: "ScreenTextShadow", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "gray" }] }] }, x: 102, y: 42 },
+    { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "purple" }] }] }, x: 100, y: 40 },
         ]
       }
     },

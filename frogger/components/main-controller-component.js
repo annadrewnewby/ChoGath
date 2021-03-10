@@ -1,15 +1,15 @@
-import * as Engine from "../../../engine/engine.js"
+import * as Engine from "../../engine/engine.js"
 
 export default class MainControllerComponent extends Engine.Component {
   constructor(gameObject) {
     super(gameObject);
     this.tick = 0;
-    this.lanes = [{ direction: 1, coolDown: 0 }, { direction: -1, coolDown: 75 }, { direction: -1, coolDown: 50 }, { direction: 1, coolDown: 75 }]
+    this.lanes = [{ direction: 1, coolDown: 0 }, { direction: -1, coolDown: 100 }, { direction: -1, coolDown: 50 }]
     this.coolDownRestart = 400;
   }
   update() {
     let score = this.gameObject.getComponent("ScoreComponent").score++;
-    if (score > 9999) {
+    if (score > 999) {
       let sceneChangerComponent = this.gameObject.getComponent("SceneChangerComponent")
       sceneChangerComponent.next();
     }

@@ -1,2 +1,2 @@
-export {default as Car} from "./car.js"
-export {default as Frog} from "./frog.js"
+export {default as Minion} from "./minion.js"
+export {default as Chogath} from "./chogath.js"

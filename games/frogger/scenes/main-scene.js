@@ -14,8 +14,8 @@ export default {
           { name: "ScreenCameraComponent" }
         ], children: [
 
-          { gameObject: { name: "ScreenTextShadow", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "purple" }] }] }, x: 102, y: 42 },
-          { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "gray" }] }] }, x: 100, y: 40 },
+          { gameObject: { name: "ScreenTextShadow", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "purple" }] }] }, x: 122, y: 42 },
+          { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "gray" }] }] }, x: 120, y: 40 },
           //{ gameObject: { name: "Score", components: [{ name: "ScreenTextComponent", args: ["0", { color: "white" }] }] }, x: 100, y: 100 }
         ]
       }

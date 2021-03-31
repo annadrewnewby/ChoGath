@@ -6,7 +6,17 @@ export default  class SceneChangerComponent extends Engine.Component {
   }
   next(){
     let currentSceneName = Engine.SceneManager.currentScene.name;
-    if(currentSceneName == "TitleScene") Engine.SceneManager.changeScene("MainScene");
-    else Engine.SceneManager.changeScene("TitleScene")
+    if(currentSceneName == "TitleScene") 
+    {
+      Engine.SceneManager.changeScene("MainScene");
+    }
+    else if (currentSceneName == "MainScene")
+    {
+      Engine.SceneManager.changeScene("EndScene")
+    }
+    else 
+    {
+      Engine.SceneManager.changeScene("TitleScene")
+    }
   }
 }

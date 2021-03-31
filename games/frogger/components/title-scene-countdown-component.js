@@ -7,7 +7,7 @@ export default  class TitleSceneCountdownComponent extends Engine.Component {
   }
   update(){
     this.tick++;
-    if(this.tick > 100)
+    if(this.tick > 50)
       this.gameObject.getComponent("SceneChangerComponent").next();
   }
 }

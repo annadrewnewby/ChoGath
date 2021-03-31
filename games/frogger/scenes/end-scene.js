@@ -21,6 +21,6 @@ export default {
           ]
         }
       },
-      { gameObject: { name: "MainController", components: [{ name: "SceneChangerComponent" }, {name: "TitleSceneCountdownComponent"}] } },
+      { gameObject: { name: "MainController", components: [{ name: "SceneChangerComponent" }, {name: "EndSceneCountdownComponent"}] } },
     ]
   }

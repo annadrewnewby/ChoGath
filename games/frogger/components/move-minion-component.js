@@ -12,6 +12,6 @@ export default  class MoveMinionComponent extends Engine.Component{
             || this.gameObject.y <0 
             || this.gameObject.y > 650){
                 this.gameObject.destroy();
+        }
     }
-}
 }

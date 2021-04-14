@@ -8,28 +8,14 @@ export default class DrawGeometryComponent extends Component {
     let rectangleGeometry = this.gameObject.getComponent("RectangleGeometryComponent")
     if (rectangleGeometry) {
       ctx.fillStyle = this.color;
-      ctx.fillRect(0, 0, rectangleGeometry.width, rectangleGeometry.height);
+      ctx.fillRect(this.gameObject.x - rectangleGeometry.width/2, this.gameObject.y - rectangleGeometry.height/2, rectangleGeometry.width, rectangleGeometry.height);
     }
     let circleGeometry = this.gameObject.getComponent("CircleGeometryComponent");
-    if (circleGeometry) {
+    if(circleGeometry){
       ctx.fillStyle = this.color;
       ctx.beginPath();
-      ctx.arc(0, 0, circleGeometry.radius, 0, Math.PI * 2);
+      ctx.arc(this.gameObject.x, this.gameObject.y, circleGeometry.radius, 0, Math.PI * 2);
       ctx.fill();
-    }
-    let polygonGeometryComponent = this.gameObject.getComponent("PolygonGeometryComponent");
-    if (polygonGeometryComponent) {
-      if (polygonGeometryComponent.points && polygonGeometryComponent.points.length) {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.moveTo(polygonGeometryComponent.points[0].x, polygonGeometryComponent.points[0].y)
-        for (let point of polygonGeometryComponent.points) {
-          ctx.lineTo(point.x, point.y);
-        }
-        ctx.closePath();
-        ctx.fill();
-        
-      }
     }
 
   }

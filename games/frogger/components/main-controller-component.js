@@ -9,7 +9,7 @@ export default class MainControllerComponent extends Engine.Component {
   }
   update() {
     let score = this.gameObject.getComponent("ScoreComponent").score++;
-    if (score > 500) {
+    if (score > 5000) {
       let sceneChangerComponent = this.gameObject.getComponent("SceneChangerComponent")
       sceneChangerComponent.next();
     }

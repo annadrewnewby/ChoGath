@@ -16,7 +16,8 @@ export default {
 
           { gameObject: { name: "ScreenTextShadow", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "purple", font: "cursive"}] }] }, x: 122, y: 42 },
           { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["Cho'Gath", { color: "gray", font: "cursive" }] }] }, x: 120, y: 40 },
-          //{ gameObject: { name: "Score", components: [{ name: "ScreenTextComponent", args: ["0", { color: "white" }] }] }, x: 100, y: 100 }
+          { gameObject: { name: "ScreenText", components: [{ name: "ScreenTextComponent", args: ["Hits", { color: "white" }] }] }, x: 140, y: 100 },
+          { gameObject: { name: "Hits", components: [{ name: "ScreenTextComponent", args: ["0", { color: "white" }] }] }, x: 100, y: 100 }
         ]
       }
 
@@ -33,6 +34,7 @@ export default {
           { name: "ScreenTextComponent", args: ["0", { color: "white" }] },
           { name: "MainControllerComponent", },
           { name: "ScoreComponent" },
+          { name: "HitsComponent" },
           { name: "SceneChangerComponent" }
         ]
       }, x: 20, y: 40

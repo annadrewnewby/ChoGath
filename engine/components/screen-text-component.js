@@ -29,8 +29,8 @@ export default  class ScreenTextComponent extends Engine.Component{
 
 
         ctx.fillText(this.string, 
-            this.gameObject.x + alignment, 
-            this.gameObject.y + justification);
+            this.gameObject.transform.position.x + alignment, 
+            this.gameObject.transform.position.y + justification);
         
     }
 }

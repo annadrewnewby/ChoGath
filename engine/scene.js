@@ -5,7 +5,7 @@ export default class Scene {
 
     children = [];
 
-    static deserializeObject(objectDefinition) {
+    static deserializeObject(objectDefinition, sceneStart = true) {
         let gameObject;
         let gameObjectDefinition;
         if (objectDefinition.prefabName) //It's a prefab
@@ -15,20 +15,27 @@ export default class Scene {
 
         if (!gameObjectDefinition) throw "Could not find a prefab or game object description (deserializeObject) in " + JSON.stringify(objectDefinition, null, 2)
         gameObject = GameObject.deserialize(gameObjectDefinition); //Deserialize the object
-        gameObject.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
-        gameObject.y = objectDefinition.y || 0; //Set the y or default to 0
+        gameObject.transform.position.x = objectDefinition.x || 0; //Set the x or default to 0. This is already the default, so this is redundant but very clear
+        gameObject.transform.position.y = objectDefinition.y || 0; //Set the y or default to 0
+        gameObject.transform.scale.x = objectDefinition.sx || 1; //Set the x or default to 0. This is already the default, so this is redundant but very clear
+        gameObject.transform.scale.y = objectDefinition.sy || 1; //Set the y or default to 0
+        gameObject.transform.rotation = objectDefinition.r || 0; //Set the y or default to 0
+        
+         if (!sceneStart) {
+            gameObject.callMethod("start");
+        }
         return gameObject
     }
 
     static deserialize(sceneDefinition) {
         let toReturn = new Scene(); //Create a new Scene
         toReturn.name = sceneDefinition.name; //Set the scene's name (for reference later when we are changing scenes)
-        for (let objectDefinition of sceneDefinition.children) { //Loop over all the children.
-            let gameObject = this.deserializeObject(objectDefinition)
-            toReturn.addChild(gameObject);
-        }
+        if (sceneDefinition.children)
+            for (let objectDefinition of sceneDefinition.children) { //Loop over all the children.
+                let gameObject = this.deserializeObject(objectDefinition)
+                toReturn.addChild(gameObject);
+            }
         return toReturn;
-
     }
 
     /**
@@ -53,7 +60,18 @@ export default class Scene {
      * @param {2D Rendering Context from a Canvas} ctx the 2D context to which we draw
      */
     draw(ctx) {
+        //Clear the screen
+        ctx.fillStyle = this.camera.getComponent("WorldCameraComponent").color;
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
         //Loop through all the game objects and render them.
+        ctx.save();
+        ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2)
+        ctx.translate(this.camera.transform.position.x, this.camera.transform.position.y)
+        ctx.scale(this.camera.transform.scale.x, this.camera.transform.scale.y)
+        ctx.rotate(this.camera.transform.rotation);
+        this.camera.screenWidth = ctx.canvas.width;
+        this.camera.screenHeight = ctx.canvas.height;
         for (let i = 0; i < this.children.length; i++) {
             let child = this.children[i];
             if (child.name == "ScreenCamera") continue;
@@ -65,15 +83,14 @@ export default class Scene {
         this.screenCamera.draw(ctx)
         ctx.restore();
     }
-
+    //Getter does 2 things. 1) I call camera not getCamera().
+    //2) Since there is no setter, this variable is read-only
     get camera() {
         return this.getGameObject("MainCamera");
     }
-    get screenCamera(){
+    get screenCamera() {
         return this.getGameObject("ScreenCamera")
     }
-
-
 
     /**
      * Update all the Gamebjects
@@ -113,7 +130,7 @@ export default class Scene {
      * Create a new game object based on the prefab name
      */
     instantiate(objectDescription) {
-        let newObject = Scene.deserializeObject(objectDescription);
+        let newObject = Scene.deserializeObject(objectDescription, false);
         this.addChild(newObject)
 
     }

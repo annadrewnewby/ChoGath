@@ -9,7 +9,7 @@ export default class MainControllerComponent extends Engine.Component {
   }
   update() {
     let score = this.gameObject.getComponent("ScoreComponent").score++;
-    if (score > 500) {
+    if (score > 5000) {
       let sceneChangerComponent = this.gameObject.getComponent("SceneChangerComponent")
       sceneChangerComponent.next();
     }
@@ -23,7 +23,7 @@ export default class MainControllerComponent extends Engine.Component {
         lane.coolDown = Math.random() * 500;
         Engine.SceneManager.currentScene.instantiate({
           prefabName: "Minion",
-          x: 0, y: i * 100 + 180
+          x: -300, y: i * -115 + 180
         })
       }
     }

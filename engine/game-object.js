@@ -29,51 +29,15 @@ export default class GameObject {
      */
     constructor(name) {
         this.name = name;
-        //this.x = 0;
-        //this.y = 0;
         this.components = [];
-        //this.children = [];
         this.markedDestroy = false;
         this.components.push(new Engine.TransformComponent(this))
-        this._enabled = true;
-        this._awoken = false;
-        this.drawLayer = "default"
-
-    }
-    get enabled(){
-        return this._enabled;
-    }
-    enable(deep = true){
-        this._enable(deep);
-    }
-    disable(deep = true){
-        this._disable(deep);
-    }
-    awake(deep = true){
-        if(this._awoken) return;
-        this._awoken = true;
-        for (let component of this.components) {
-            if (component.awake) component.awake();
-        }
-        if (deep) {
-            for (let child of this.transform.children) {
-                child.awake(deep);
-            }
-        }
     }
     
-    _enable(deep = true) {
-        this._enabled = true;
-        this.awake(deep);
-        for (let component of this.components) {
-            if (component.onEnable) component.onEnable();
-        }
-        if (deep) {
-            for (let child of this.transform.children) {
-                child._enable(deep);
-            }
-        }
 
+    addChild(gameObject){
+        this.transform.children.push(gameObject);
+        gameObject.transform.parent = this.transform;
     }
     _disable(deep = true) {
         this._enabled = false;
@@ -107,9 +71,7 @@ export default class GameObject {
      * Draw the game object
      * @param {2D Context from a Canvas} ctx where the game object is drawn
      */
-    draw(layers) {//How does the game object draw itself?
-        if(!this.enabled) return;
-        let ctx = layers.find(l=>l.name == this.drawLayer).ctx
+    draw(ctx) {//How does the game object draw itself?
         ctx.save();
         ctx.translate(this.transform.position.x, this.transform.position.y);
         ctx.rotate(this.transform.rotation);
@@ -118,7 +80,7 @@ export default class GameObject {
             if (component.draw) component.draw(ctx);
         }
         for (let child of this.transform.children) {
-            child.draw(layers);
+            child.draw(ctx);
         }
         ctx.restore();
     }
@@ -155,11 +117,7 @@ export default class GameObject {
             if (component.constructor.name == name)
                 return component;
         }
-        //If we didn't find it, search any children we have
-        // for(let child of this.transform.children){
-        //     let component = child.getComponent(name);
-        //     if(component) return component;
-        // }
+     
         return null;
     }
 
@@ -167,9 +125,8 @@ export default class GameObject {
      * Call a method on this game object (if present) and all children
      */
     callMethod(name, args) {
-        if(!this.enabled) return
         for (let component of this.components) {
-            if (component[name] && component.enabled)
+            if (component[name] )
                 component[name](args);
         }
         for (let child of this.transform.children) {

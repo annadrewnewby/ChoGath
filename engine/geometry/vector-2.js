@@ -78,6 +78,9 @@ export default class Vector2 {
   distanceBetween(other) {
     return Vector2.minus(this, other).length();
   }
+  distanceTo(other){
+    return this.distanceBetween(other);
+  }
   static distanceBetween(one, two) {
     return one.distanceBetween(two);
   }
@@ -115,14 +118,6 @@ export default class Vector2 {
   }
   static closeTo(one, two) {
     return one.closeTo(two);
-  }
-
-  dot(other){
-    return this.x * other.x + this.y * other.y;
-  }
-
-  static dot(one, two){
-    return one.x * two.x + one.y * two.y;
   }
 
   

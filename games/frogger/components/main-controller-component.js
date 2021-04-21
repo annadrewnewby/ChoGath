@@ -23,7 +23,7 @@ export default class MainControllerComponent extends Engine.Component {
         lane.coolDown = Math.random() * 500;
         Engine.SceneManager.currentScene.instantiate({
           prefabName: "Minion",
-          x: 0, y: i * 100 + 180
+          x: -300, y: i * -115 + 180
         })
       }
     }

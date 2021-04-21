@@ -39,22 +39,6 @@ export default class GameObject {
         this.transform.children.push(gameObject);
         gameObject.transform.parent = this.transform;
     }
-    _disable(deep = true) {
-        this._enabled = false;
-        for (let component of this.components) {
-            if (component.onDisable) component.onDisable();
-        }
-        if (deep) {
-            for (let child of this.transform.children) {
-                child._disable(deep);
-            }
-        }
-    }
-
-    addChild(gameObject){
-        this.transform.children.push(gameObject);
-        gameObject.transform.parent = this.transform;
-    }
     /**
      * Update the game by iterating over every game object and calling update if available.
      */

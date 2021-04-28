@@ -24,6 +24,7 @@ export default class MainControllerComponent extends Engine.Component {
         Engine.SceneManager.currentScene.instantiate({
           prefabName: "Minion",
           x: -300, y: i * -115 + 180
+          ,drawLayer: "midground"
         })
       }
     }

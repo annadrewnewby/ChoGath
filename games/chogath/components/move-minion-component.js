@@ -21,7 +21,7 @@ export default  class MoveMinionComponent extends Engine.Component{
         let point = this.gameObject.x;
         if (Engine.EngineGeometry.Collisions.inCollision(point, rectangle.getComponent("RectangleGeometryComponent").asGeometry())) {
             this.gameObject.destroy();
-            hits++;
+            Engine.SceneManager.currentScene.getGameObject("MainController").getComponent("HitsComponent").hits++;
         }
     }
 }

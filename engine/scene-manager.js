@@ -13,7 +13,11 @@ export default  class SceneManager {
     if (SceneManager.currentScene && proposedScene.name == SceneManager.currentScene.name) return console.log("Trying to change to the current scene " + sceneName)
     let scene = Scene.deserialize(proposedScene, true);  //Deserialize the scene definition
     SceneManager.currentScene = scene;
-    
+    for(let gameObject of SceneManager.currentScene.children){
+      if(!gameObject.enabled) continue;
+      gameObject.awake();
+      gameObject.enable(true);
+    }
     scene.callMethod("start")
   }
 }

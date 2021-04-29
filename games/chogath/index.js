@@ -39,6 +39,14 @@ function boot(mainSceneName) {
     { name: "midground", ctx: dctx },
     { name: "screen", ctx: dctx }
   ]
+
+  if(!drawingLayers.some(i=>i.name == "default"))
+      drawingLayers.splice(0, 0, {name:"default", ctx: dctx})
+
+    let wrap = drawingLayers.find(i => i.name == "wrap");
+    if (wrap)
+      wrap.ctx = wrapctx;
+
   /* Update and draw our game */
   function gameLoop() {
     clear();

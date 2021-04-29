@@ -1,4 +1,5 @@
-import { EngineComponents } from "./engine.js";
+//import { EngineComponents } from "./engine.js";
+import Engine from "./engine.js";
 import GameObject from "./game-object.js"
 import SceneManager from "./scene-manager.js"
 

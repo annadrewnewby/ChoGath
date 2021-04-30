@@ -165,9 +165,6 @@ class Engine {
   }
 
 }
-
-
-
 Engine.SceneManager = SceneManager;
 Engine.EngineGeometry = EngineGeometry;
 Engine.SceneManager.Geometry = Engine.EngineGeometry;

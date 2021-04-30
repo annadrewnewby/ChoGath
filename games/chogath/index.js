@@ -8,7 +8,15 @@ import * as EngineGeometry from "../../engine/geometry/engine-geometry.js"
 function boot(mainSceneName) {
 
   /* Attach singleton classe to global this */
- 
+  globalThis.bufferCanvas = document.createElement("canvas");
+  globalThis.bctx = bufferCanvas.getContext("2d");
+  globalThis.bufferCanvas.width = 2 * Engine.SceneManager.screenWidth;
+  globalThis.bufferCanvas.height = 2 * Engine.SceneManager.screenHeight;
+
+  globalThis.blurCanvas = document.createElement("canvas");
+  globalThis.bbctx = blurCanvas.getContext("2d");
+  globalThis.blurCanvas.width = 2 * Engine.SceneManager.screenWidth;
+  globalThis.blurCanvas.height = 2 * Engine.SceneManager.screenHeight;
 
   /* Setup our canvas */
   let canvas = document.createElement("canvas");

@@ -96,7 +96,9 @@ export default class GameObject {
      */
     update() {
         for (let component of this.components) {
-            if (component.update) component.update();
+            if (component.update){
+                component.update();
+            }
         }
         for (let child of this.transform.children) {
             child.update();

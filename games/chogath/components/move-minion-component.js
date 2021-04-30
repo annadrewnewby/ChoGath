@@ -19,7 +19,7 @@ export default  class MoveMinionComponent extends Engine.Component{
        
         let rectangle = Engine.SceneManager.currentScene.getGameObject("Chogath");
         let point = this.gameObject.x;
-        if (Engine.EngineGeometry.Collisions.inCollision(point, rectangle.getComponent("RectangleGeometryComponent").asGeometry())) {
+        if (Engine.EngineGeometry.Collisions.collision(point, rectangle.getComponent("RectangleGeometryComponent").asGeometry())) {
             this.gameObject.destroy();
             Engine.SceneManager.currentScene.getGameObject("MainController").getComponent("HitsComponent").hits++;
         }

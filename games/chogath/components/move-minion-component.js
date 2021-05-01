@@ -1,5 +1,5 @@
 import * as Engine from "../../../engine/engine.js"
-import chogath from "../prefabs/chogath.js";
+import chogath from "../prefabs/chogath.js"
 
 export default  class MoveMinionComponent extends Engine.Component{
     constructor(gameObject){
@@ -17,7 +17,7 @@ export default  class MoveMinionComponent extends Engine.Component{
                 this.gameObject.destroy();
         }
        
-        let rectangle = Engine.SceneManager.currentScene.getGameObject("Chogath");
+        let rectangle = Engine.SceneManager.currentScene.getGameObject("chogath");
         let point = this.gameObject.x;
         if (Engine.EngineGeometry.Collisions.collision(point, rectangle.getComponent("RectangleGeometryComponent").asGeometry())) {
             this.gameObject.destroy();
